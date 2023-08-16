@@ -2,8 +2,6 @@
 import random
 print('-'*50)
 lista2 =[]
-soma = 0
-print('Digite 5 números')
 for i in range(50):
     num = random.randint(6)
     if num == 6:

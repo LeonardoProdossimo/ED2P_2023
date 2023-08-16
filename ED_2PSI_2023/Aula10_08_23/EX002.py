@@ -2,7 +2,6 @@
 print('-'*50)
 vetor = []
 lista2 = []
-soma = 0
 print('Digite 10 números')
 for i in range(10):
     num = int(input(f'Digite o {i+1}º número: '))
