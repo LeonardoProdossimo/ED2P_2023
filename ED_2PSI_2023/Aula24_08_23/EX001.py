@@ -12,23 +12,25 @@ while opcao != 4:
         codigo = int(input('Codigo: '))
         nome = input('Nome: ')
         descricao = input('Descricao: ')
+        qtd = int(input("Quantidade: "))
         preco = float(input('Preco: R$ '))
-        produto = [codigo, nome, descricao, preco]
+        produto = [codigo, nome, descricao, preco, qtd]
         bd_estoque.append(produto)
         print('-----Adicionado com sucesso-----')
     elif opcao == 2:
         print('-----Estoque-----')
-        print('Codigo\tNome\tDescricao\tPreco')
+        print('Codigo\tNome\tDescricao\tQuant\tPreco')
         for prod in bd_estoque:
             print(prod[0],end='\t')
             print(prod[1],end='\t')
             print(prod[2],end='\t')
+            print(prod[4],end='\t')
             print(prod[3])
         print('-----Fim estoque-----')
     elif opcao == 3:
         soma = 0
         for prod in bd_estoque:
-            soma += prod[3] 
+            soma += (prod[3] * prod [4])
         print(f"O valor total do estoque é R$ {soma:.2f}")
     elif opcao == 4:
         print('saindo....')
