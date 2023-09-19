@@ -32,7 +32,7 @@ def exibeProdutos(estoque, todos, disp, nDisp, cod):
     # retorno do resultado
     return print(tabela)
 
-#função para perguntar se deseja continuar a tentar 
+#função para perguntar se deseja continuar a tentar as opções
 def continua():
     print("Deseja continuar?")
     print("1 - Sim")
@@ -47,7 +47,7 @@ def continua():
     return continua() 
 
 
-# função para tratar erro de formato de dados
+# função para tratar erro quando o usuário digitar letras nos lugares que tem que ser números
 def retorna_numero(tipoDados):
     tipo = tipoDados
     if(tipo == "quantidade"):
