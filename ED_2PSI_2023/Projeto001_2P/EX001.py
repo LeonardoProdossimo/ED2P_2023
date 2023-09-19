@@ -11,7 +11,7 @@ try:
 except:
     print("ARQUIVO NÃO EXISTE!")
 
-while op != "9":
+while op != "0":
     print("===================== MENU =====================")
     print("1 - ADICIONAR PRODUTO")
     print("2 - CONSULTAR PRODUTO POR CODIGO")
@@ -20,8 +20,9 @@ while op != "9":
     print("5 - ALTERAR PREÇO DO PRODUTO")
     print("6 - APLICAR ACRESCIMO/DESCONTO NOS PRODUTOS")
     print("7 - ADICIONAR ESTOQUE")
-    print("8 - SALVAR")
-    print("9 - SALVAR E SAIR")
+    print("8 - REMOVER ESTOQUE")
+    print("9 - SALVAR")
+    print("0 - SALVAR E SAIR")
     op = input("OPÇÃO ---> ")
 
     if(op == "1"):
@@ -107,18 +108,28 @@ while op != "9":
         if(codigo == "sair"):
             continue
         quant = assistente.retorna_numero("quantidade")
-        estoque[codigo]["quantidade"] = quant
-        if(quant > 0):
-            estoque[codigo]["disponivel"] = True
-        print("Adicionado com sucesso!")
-
+        assistente.adic_remov_estoque(estoque, codigo, quant, True)
+        
     elif(op == "8"):
+        print("="*50)
+        print("REMOVER ESTOQUE")
+        codigo = assistente.retorna_codigo(estoque, False)
+        if(codigo == "sair"):
+            continue
+        quant = assistente.retorna_numero("quantidade")
+        corrigeEstoque = assistente.adic_remov_estoque(estoque, codigo, quant, False)
+        if(corrigeEstoque == "sucesso"):
+            print("Estoque corrigido com sucesso!")
+        else:
+            print("Saldo no estoque insuficiente para remover! \n Tente novamente!")
+
+    elif(op == "9"):
         print("="*50)
         with open("C:\\projetos\\GitHub\\ED2P_2023\\ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json" , "w") as json_file:
             json.dump(estoque , json_file, indent = 4)
         print("Salvo com sucesso!")
 
-    elif(op == "9"):
+    elif(op == "0"):
         print("="*50)
         print("SAINDO..")
         print("="*50)
