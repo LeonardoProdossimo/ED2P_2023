@@ -97,6 +97,7 @@ while op != "0":
             print("Atualizado com sucesso!")
         elif(op == "2"):
             fim = assistente.acrescimo_desconto(estoque, "desconto")
+            print("="*50)
             print("Atualizado com sucesso!")
         else:
             print("Opção inválida!")
