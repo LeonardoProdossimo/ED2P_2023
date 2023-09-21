@@ -145,7 +145,7 @@ def acrescimo_desconto(estoque, tipoOperacao):
         valor = retorna_numero("porcentagem")
         if(tipoOperacao == "desconto"):
             while valor > 100:
-                print("Porcentagem de desconto não pode ser maior que o valor do produto!")
+                print("Porcentagem de desconto não pode ser maior que o valor do produto! (100%)")
                 valor = retorna_numero("porcentagem")
         sePorcentagem = True
     elif(op == "2"):
@@ -160,9 +160,27 @@ def acrescimo_desconto(estoque, tipoOperacao):
     novoValor = diferenciaTodos(estoque, sePorcentagem, valor, tipoOperacao)
     return novoValor
 
+# confere se algum produto vai ficar com o preco negativo
+def travaPrecoNegativo(estoque, sePorcentagem, valor, tipoOperacao):
+    travar = False
+    for prod in estoque:
+        nomeProd = estoque[prod]["nome"]
+        precoProd = estoque[prod]["preco"]
+
+        if (((tipoOperacao == "desconto") and (not sePorcentagem)) and ((estoque[prod]["preco"]- valor) < 0)):
+            travar = True
+            print("="*50)
+            print(f"O valor de desconto para o produto {nomeProd} não pode ser maior que R${precoProd:.2f}!")
+    if(travar):
+        return "travar"
+    else:
+        return "continuar"
+    
 
 #função para escolher todos ou apenas um item da lista
 def diferenciaTodos(estoque, sePorcentagem, valor, tipoOperacao):
+    
+    travar = False
     print("="*50)
     print("1 - APLICAR POR CODIGO")
     print("2 - APLICAR EM TODOS")
@@ -170,7 +188,20 @@ def diferenciaTodos(estoque, sePorcentagem, valor, tipoOperacao):
     if(op =="1"):
         todosValores = False
         codigo = retorna_codigo(estoque, False)
+        precoProd = estoque[codigo]["preco"]
+        nomeProd = estoque[codigo]["nome"]
+
+        if (((tipoOperacao == "desconto") and (not sePorcentagem)) and ((estoque[codigo]["preco"]- valor) < 0)):
+            print("="*50)
+            print(f"O valor de desconto para o produto {nomeProd} não pode ser maior que R${precoProd:.2f}!")
+            return acrescimo_desconto(estoque, tipoOperacao)
+
     elif(op == "2"):
+        trava = travaPrecoNegativo(estoque, sePorcentagem, valor, tipoOperacao)
+        if(trava == "travar"):
+            travar = True
+            acrescimo_desconto(estoque, tipoOperacao)
+
         codigo = ""
         todosValores = True
     else:
@@ -181,12 +212,12 @@ def diferenciaTodos(estoque, sePorcentagem, valor, tipoOperacao):
             return diferenciaTodos(estoque, tipoOperacao, valor)  # repetir a pergunta
         elif (cont == "sair"):
             return "sair" #retorno para o sistema saber que o usuário não quer tentar outro código
-
-    if(tipoOperacao =="acrescimo"):
-        novoValor = novoPreco(estoque, codigo, sePorcentagem, valor, "acrescimo", todosValores)
-    else:
-        novoValor = novoPreco(estoque, codigo, sePorcentagem, valor, "desconto", todosValores)
-    return novoValor
+    if(not travar):
+        if(tipoOperacao =="acrescimo"):
+            novoValor = novoPreco(estoque, codigo, sePorcentagem, valor, "acrescimo", todosValores)
+        else:
+            novoValor = novoPreco(estoque, codigo, sePorcentagem, valor, "desconto", todosValores)
+        return novoValor
 
 
 #função para calcular o novo preco de acordo com os parâmetros
