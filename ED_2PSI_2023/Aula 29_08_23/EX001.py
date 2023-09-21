@@ -21,3 +21,12 @@ while op != 3:
             print(estoque[codigo])
     elif (op == 3):
         print('Saindo..')
+
+
+
+
+
+
+
+
+        

@@ -6,13 +6,13 @@ op = 1
 
 #tenta carregar o arquivo e armazenar no dicionário se falhar exibe o print tratando o erro para não parar o programa
 try:
-    with open("C:\\projetos\\GitHub\\ED2P_2023\\ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json", "r") as json_file:
+    with open("ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json", "r") as json_file:
         estoque = json.load(json_file)
 except:
     print("ARQUIVO NÃO EXISTE!")
 
 while op != "0":
-    print("===================== MENU =====================")
+    print("====================== MENU ======================")
     print("1 - ADICIONAR PRODUTO")
     print("2 - CONSULTAR PRODUTO POR CODIGO")
     print("3 - CONSULTAR TODOS OS PRODUTOS")
@@ -43,7 +43,7 @@ while op != "0":
     elif(op == "2"):
         print("="*50)
         print("CONSULTA POR CODIGO")
-        codigo = assistente.retorna_codigo(False)
+        codigo = assistente.retorna_codigo(estoque, False)
         if(codigo == "sair"):
             continue
         assistente.exibeProdutos(estoque, False, False, False, codigo)
@@ -119,13 +119,16 @@ while op != "0":
         quant = assistente.retorna_numero("quantidade")
         corrigeEstoque = assistente.adic_remov_estoque(estoque, codigo, quant, False)
         if(corrigeEstoque == "sucesso"):
+            print("="*50)
             print("Estoque corrigido com sucesso!")
         else:
-            print("Saldo no estoque insuficiente para remover! \n Tente novamente!")
+            print("="*50)
+            print(f"Saldo no estoque insuficiente para remover, você tem {int(corrigeEstoque)} unidades deste produto!" 
+                   "\nTente novamente!")
 
     elif(op == "9"):
         print("="*50)
-        with open("C:\\projetos\\GitHub\\ED2P_2023\\ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json" , "w") as json_file:
+        with open("ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json" , "w") as json_file:
             json.dump(estoque , json_file, indent = 4)
         print("Salvo com sucesso!")
 
@@ -138,5 +141,5 @@ while op != "0":
         print("="*50)
         print("OPÇÃO INVÁLIDA!")
 
-with open("C:\\projetos\\GitHub\\ED2P_2023\\ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json" , "w") as json_file:
+with open("ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json" , "w") as json_file:
             json.dump(estoque , json_file, indent = 4)

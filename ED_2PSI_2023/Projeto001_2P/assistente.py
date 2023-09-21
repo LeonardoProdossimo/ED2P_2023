@@ -4,29 +4,39 @@ from tabulate import tabulate #biblioteca que converte listas e dicionários par
 def exibeProdutos(estoque, todos, disp, nDisp, cod):
 
     dados_formatados = []
+    total_quantidade = 0
+    total_preco = 0
 
     # Organize o dicionário em uma lista de listas, onde cada lista interna representa uma linha da tabela
     for codigo, produto in estoque.items():
-
+        precoFormatado = round(produto["preco"],2)
         #verificações para saber qual tipo de dados exibir
         if(produto["disponivel"] == True):
             disponivel = "Disponível"
         else:
             disponivel = "Não disponível"
         if (todos):
-                dados_formatados.append([codigo, produto["nome"], produto["quantidade"], produto['preco'], disponivel])
-        elif (disp):
-            if(produto["disponivel"] == True):
-                dados_formatados.append([codigo, produto["nome"], produto["quantidade"], produto['preco'], disponivel])
-        elif (nDisp):
-            if(produto["disponivel"] == False):
-                dados_formatados.append([codigo, produto["nome"], produto["quantidade"], produto['preco'], disponivel])
+            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+            total_quantidade += produto["quantidade"]
+            total_preco += produto["preco"]
+        elif (disp and produto["disponivel"] == True):
+            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+            total_quantidade += produto["quantidade"]
+            total_preco += produto["preco"]
+        elif (nDisp and produto["disponivel"] == False):
+            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+            total_quantidade += produto["quantidade"]
+            total_preco += produto["preco"]
         else:
             if(codigo == cod):
-                dados_formatados.append([cod, produto["nome"], produto["quantidade"], produto['preco'], disponivel])
+                dados_formatados.append([cod, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+                total_quantidade += produto["quantidade"]
+                total_preco += produto["preco"]
     
+    dados_formatados.append([])
+    dados_formatados.append(["Total: ", "", total_quantidade, round(total_preco, 2), ""])
     #criando tabela formatada no estilo GRID
-    tabela = tabulate(dados_formatados, headers=["Código", "Nome", "Quantidade", "Preço (R$)", "Disponível"], tablefmt="grid")
+    tabela = tabulate(dados_formatados, headers=["Código", "Nome", "Quantidade", "Preço Kg/UN (R$)", "Disponível"], tablefmt="grid")
 
     # retorno do resultado
     return print(tabela)
@@ -64,7 +74,11 @@ def retorna_numero(tipoDados):
         if (num < 0):
             print("="*50)
             print("Digite um número que não seja negativo!")
-            return retorna_numero(tipo)
+            cont = continua()
+            if(cont == "continuar"):
+                return retorna_numero(tipo)  # repetir a pergunta
+            elif (cont == 'sair'):
+                return "sair" #retorno para o sistema saber que o usuário não quer tentar outro código
         else:
             return num
     except ValueError: # formato errado
@@ -113,10 +127,10 @@ def adic_remov_estoque(estoque, codigo, quant, adiciona):
 
     else:
         if((estoque[codigo]["quantidade"] - quant) < 0):
-            return "sair"
+            return estoque[codigo]["quantidade"]
         else:
             estoque[codigo]["quantidade"] -= quant
-            if(quant == 0):
+            if(estoque[codigo]["quantidade"] == 0):
                 estoque[codigo]["disponivel"] = False
         return "sucesso"
 
@@ -129,6 +143,10 @@ def acrescimo_desconto(estoque, tipoOperacao):
     op = input("OPÇÃO ---> ")
     if(op =="1"):
         valor = retorna_numero("porcentagem")
+        if(tipoOperacao == "desconto"):
+            while valor > 100:
+                print("Porcentagem de desconto não pode ser maior que o valor do produto!")
+                valor = retorna_numero("porcentagem")
         sePorcentagem = True
     elif(op == "2"):
         valor = retorna_numero("valor")
