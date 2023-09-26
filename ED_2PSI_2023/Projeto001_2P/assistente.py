@@ -2,7 +2,7 @@
 from tabulate import tabulate
 
 #função para exibir o estoque
-def exibeProdutos(estoque, todos, disp, nDisp, cod):
+def exibeProdutos(estoque, todos, disp, cod):
 
     dados_formatados = []
     total_quantidade = 0
@@ -24,7 +24,7 @@ def exibeProdutos(estoque, todos, disp, nDisp, cod):
             dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]
-        elif (nDisp and produto["disponivel"] == False):
+        elif (not disp and produto["disponivel"] == False):
             dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]

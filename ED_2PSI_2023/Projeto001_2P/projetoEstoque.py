@@ -57,13 +57,13 @@ while op != "0":
         op = input("OPÇÃO ---> ")
         if (op == "1"):
             print("="*50)
-            assistente.exibeProdutos(estoque, True, False, False, "")
+            assistente.exibeProdutos(estoque, True, False, "")
         elif (op =="2"):
             print("="*50)
-            assistente.exibeProdutos(estoque, False, True, False, "")
+            assistente.exibeProdutos(estoque, False, True, "")
         elif (op =="3"):
             print("="*50)
-            assistente.exibeProdutos(estoque, False, False, True, "")
+            assistente.exibeProdutos(estoque, False, False, "")
         else:
             print("Opção inválida!")
 
