@@ -73,8 +73,16 @@ while op != "0":
         codigo = assistente.retorna_codigo(estoque, False)
         if(codigo == "sair"):
             continue
-        estoque.pop(codigo)
-        print("Produto excluido com sucesso!")
+        prod = estoque[codigo]["nome"]
+        print(f"Deseja realmente excluir o produto {estoque[codigo][prod]} ?")
+        print("1 - Sim")
+        print("2 - Não")
+        op = input("OPÇÃO ---> ")
+        if(op == "1"):
+            estoque.pop(codigo)
+            print("Produto excluido com sucesso!")
+        else:
+            continue
 
     elif(op == "5"):
         print("="*50)

@@ -16,5 +16,11 @@
         "quantidade": 50.0,
         "preco": 1.0,
         "disponivel": true
+    },
+    "abc4": {
+        "nome": "rom\u00e3",
+        "quantidade": 30.0,
+        "preco": 1.59,
+        "disponivel": true
     }
 }

@@ -9,32 +9,33 @@ def exibeProdutos(estoque, todos, disp, nDisp, cod):
 
     # Organize o dicionário em uma lista de listas, onde cada lista interna representa uma linha da tabela
     for codigo, produto in estoque.items():
-        precoFormatado = round(produto["preco"],2)
+        precoFormatado = f"{produto['preco']:.2f}"
         #verificações para saber qual tipo de dados exibir
         if(produto["disponivel"] == True):
             disponivel = "Disponível"
         else:
             disponivel = "Não disponível"
         if (todos):
-            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+ precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]
         elif (disp and produto["disponivel"] == True):
-            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]
         elif (nDisp and produto["disponivel"] == False):
-            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+            dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]
         else:
             if(codigo == cod):
-                dados_formatados.append([cod, produto["nome"], produto["quantidade"], precoFormatado, disponivel])
+                dados_formatados.append([cod, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
                 total_quantidade += produto["quantidade"]
                 total_preco += produto["preco"]
     
+    total_preco = f"{(total_preco * total_quantidade):.2f}"
     dados_formatados.append([])
-    dados_formatados.append(["Total: ", "", total_quantidade, round(total_preco, 2), ""])
+    dados_formatados.append(["Total: ", "", total_quantidade, "R$ "+total_preco, ""])
     #criando tabela formatada no estilo GRID
     tabela = tabulate(dados_formatados, headers=["Código", "Nome", "Quantidade", "Preço Kg/UN (R$)", "Disponível"], tablefmt="grid")
 
