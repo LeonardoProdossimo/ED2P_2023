@@ -146,7 +146,7 @@ while op != "0":
         print("="*50)
         print("SAINDO..")
         print("="*50)
-
+        
     else:
         print("="*50)
         print("OPÇÃO INVÁLIDA!")
