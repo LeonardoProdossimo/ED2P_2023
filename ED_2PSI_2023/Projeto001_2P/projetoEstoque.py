@@ -27,7 +27,7 @@ while op != "0":
 
     if(op == "1"):
         print("="*50)
-        print("CADASTRO DE PRODUTOS")
+        print("============== CADASTRO DE PRODUTOS ==============")
         codigo = assistente.retorna_codigo(estoque, True)
         if(codigo == "sair"):
                 continue 
@@ -42,15 +42,15 @@ while op != "0":
 
     elif(op == "2"):
         print("="*50)
-        print("CONSULTA POR CODIGO")
+        print("============== CONSULTA POR CODIGO ===============")
         codigo = assistente.retorna_codigo(estoque, False)
         if(codigo == "sair"):
             continue
-        assistente.exibeProdutos(estoque, False, False, False, codigo)
+        assistente.exibeProdutos(estoque, False, False, codigo)
 
     elif(op == "3"):
         print("="*50)
-        print("CONSULTAR TODO ESTOQUE")
+        print("============= CONSULTAR TODO ESTOQUE =============")
         print("1 - CONSULTAR TODO ESTOQUE")
         print("2 - CONSULTAR PRODUTOS DISPONIVEIS")
         print("3 - CONSULTAR PRODUTOS INDISPONIVEIS")
@@ -69,7 +69,7 @@ while op != "0":
 
     elif(op == "4"):
         print("="*50)
-        print("EXCLUIR REGISTRO")
+        print("================ EXCLUIR REGISTRO ================")
         codigo = assistente.retorna_codigo(estoque, False)
         if(codigo == "sair"):
             continue
@@ -87,7 +87,7 @@ while op != "0":
 
     elif(op == "5"):
         print("="*50)
-        print("ALTERAR PREÇO")
+        print("================= ALTERAR PREÇO ==================")
         codigo = assistente.retorna_codigo(estoque, False)
         if(codigo == "sair"):
             continue
@@ -97,7 +97,7 @@ while op != "0":
 
     elif(op == "6"):
         print("="*50)
-        print("APLICAR DESCONTO OU ACRESCIMO")
+        print("========= APLICAR DESCONTO OU ACRESCIMO ==========")
         print("1 - ACRESCIMO")
         print("2 - DESCONTO")
         op = input("OPÇÃO ---> ")
@@ -117,7 +117,7 @@ while op != "0":
 
     elif(op == "7"):
         print("="*50)
-        print("ADICIONAR ESTOQUE")
+        print("=============== ADICIONAR ESTOQUE ================")
         codigo = assistente.retorna_codigo(estoque, False)
         if(codigo == "sair"):
             continue
@@ -126,10 +126,11 @@ while op != "0":
         
     elif(op == "8"):
         print("="*50)
-        print("REMOVER ESTOQUE")
+        print("================ REMOVER ESTOQUE =================")
         codigo = assistente.retorna_codigo(estoque, False)
         if(codigo == "sair"):
             continue
+        prod = estoque[codigo]["nome"]
         quant = assistente.retorna_numero("quantidade")
         corrigeEstoque = assistente.adic_remov_estoque(estoque, codigo, quant, False)
         if(corrigeEstoque == "sucesso"):
@@ -137,7 +138,7 @@ while op != "0":
             print("Estoque corrigido com sucesso!")
         else:
             print("="*50)
-            print(f"Saldo no estoque insuficiente para remover, você tem {int(corrigeEstoque)} unidades deste produto!" 
+            print(f"Saldo no estoque insuficiente para remover, você tem {int(corrigeEstoque)} unidades do produto {prod.upper()}!" 
                    "\nTente novamente!")
 
     elif(op == "9"):

@@ -17,18 +17,22 @@ def exibeProdutos(estoque, todos, disp, cod):
             disponivel = "Disponível"
         else:
             disponivel = "Não disponível"
+
         if (todos):
             dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+ precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]
-        elif (disp and produto["disponivel"] == True):
+
+        elif ((not todos) and (disp) and (produto["disponivel"] == True)):
             dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]
-        elif (not disp and produto["disponivel"] == False):
+
+        elif ((not todos) and (not disp) and (produto["disponivel"] == False) and (cod == "")):
             dados_formatados.append([codigo, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
             total_quantidade += produto["quantidade"]
             total_preco += produto["preco"]
+
         else:
             if(codigo == cod):
                 dados_formatados.append([cod, produto["nome"], produto["quantidade"], "R$ "+precoFormatado, disponivel])
@@ -161,7 +165,6 @@ def acrescimo_desconto(estoque, tipoOperacao):
         elif (op == "sair"):
             return "sair" #retorno para o sistema saber que o usuário não quer tentar outro código
    
-
 
 # confere se algum produto vai ficar com o preco negativo
 def travaPrecoNegativo(estoque, sePorcentagem, valor, tipoOperacao):
