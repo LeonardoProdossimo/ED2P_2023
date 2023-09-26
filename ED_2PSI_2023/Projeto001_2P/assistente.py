@@ -1,6 +1,7 @@
 #biblioteca para exibir as inforções em forma de tabela
 from tabulate import tabulate
 
+
 #função para exibir o estoque
 def exibeProdutos(estoque, todos, disp, cod):
 
@@ -86,12 +87,7 @@ def retorna_numero(tipoDados):
     except ValueError: # formato errado
         print("="*50)
         print('Formato digitado inválido!')
-        cont = continua()
-        if(cont == "continuar"):
-            return retorna_numero(tipo)  # repetir a pergunta
-        elif (cont == 'sair'):
-            return "sair" #retorno para o sistema saber que o usuário não quer tentar outro código
-        return retorna_numero(tipo) # repetir a pergunta
+        return retorna_numero(tipo)  # repetir a pergunta
 
 
 #função para tratar ambiguidade no código
@@ -118,6 +114,7 @@ def retorna_codigo(estoque, cadastro):
             elif (cont == "sair"):
                 return "sair" #retorno para o sistema saber que o usuário não quer tentar outro código
     return codigo
+
 
 #função para adicionar/remover estoque
 def adic_remov_estoque(estoque, codigo, quant, adiciona):
@@ -150,17 +147,21 @@ def acrescimo_desconto(estoque, tipoOperacao):
                 print("Porcentagem de desconto não pode ser maior que o valor do produto! (100%)")
                 valor = retorna_numero("porcentagem")
         sePorcentagem = True
+        novoValor = diferenciaTodos(estoque, sePorcentagem, valor, tipoOperacao)
+        return novoValor
     elif(op == "2"):
         valor = retorna_numero("valor")
         sePorcentagem = False
+        novoValor = diferenciaTodos(estoque, sePorcentagem, valor, tipoOperacao)
+        return novoValor
     else:
         cont = continua()
         if(cont == "continuar"):
             return acrescimo_desconto(estoque, tipoOperacao) # repetir a pergunta
         elif (op == "sair"):
             return "sair" #retorno para o sistema saber que o usuário não quer tentar outro código
-    novoValor = diferenciaTodos(estoque, sePorcentagem, valor, tipoOperacao)
-    return novoValor
+   
+
 
 # confere se algum produto vai ficar com o preco negativo
 def travaPrecoNegativo(estoque, sePorcentagem, valor, tipoOperacao):

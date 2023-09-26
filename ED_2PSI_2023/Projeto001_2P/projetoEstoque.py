@@ -30,7 +30,7 @@ while op != "0":
         print("CADASTRO DE PRODUTOS")
         codigo = assistente.retorna_codigo(estoque, True)
         if(codigo == "sair"):
-            continue
+                continue 
         nome = input("Digite o nome do produto -->  ")
         quant = assistente.retorna_numero("quantidade")
         preco  = assistente.retorna_numero("preco")
@@ -103,9 +103,13 @@ while op != "0":
         op = input("OPÇÃO ---> ")
         if(op == "1"):
             fim = assistente.acrescimo_desconto(estoque, "acrescimo")
+            if(fim == "sair"):
+                continue
             print("Atualizado com sucesso!")
         elif(op == "2"):
             fim = assistente.acrescimo_desconto(estoque, "desconto")
+            if(fim == "sair"):
+                continue
             print("="*50)
             print("Atualizado com sucesso!")
         else:
@@ -146,7 +150,7 @@ while op != "0":
         print("="*50)
         print("SAINDO..")
         print("="*50)
-        
+
     else:
         print("="*50)
         print("OPÇÃO INVÁLIDA!")
