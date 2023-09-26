@@ -82,6 +82,7 @@ while op != "0":
             estoque.pop(codigo)
             print("Produto excluido com sucesso!")
         else:
+            print("Operação cancelada!")
             continue
 
     elif(op == "5"):
