@@ -1,15 +1,16 @@
-from tabulate import tabulate #biblioteca que converte listas e dicionários para forma de tabela
+#biblioteca para exibir as inforções em forma de tabela
+from tabulate import tabulate
 
-#função para melhor exibir o estoque
+#função para exibir o estoque
 def exibeProdutos(estoque, todos, disp, nDisp, cod):
 
     dados_formatados = []
     total_quantidade = 0
     total_preco = 0
 
-    # Organize o dicionário em uma lista de listas, onde cada lista interna representa uma linha da tabela
     for codigo, produto in estoque.items():
         precoFormatado = f"{produto['preco']:.2f}"
+
         #verificações para saber qual tipo de dados exibir
         if(produto["disponivel"] == True):
             disponivel = "Disponível"
@@ -36,10 +37,10 @@ def exibeProdutos(estoque, todos, disp, nDisp, cod):
     total_preco = f"{(total_preco * total_quantidade):.2f}"
     dados_formatados.append([])
     dados_formatados.append(["Total: ", "", total_quantidade, "R$ "+total_preco, ""])
-    #criando tabela formatada no estilo GRID
+    
+    #criando tabela formatada no estilo GRID com ajusda da biblioteca
     tabela = tabulate(dados_formatados, headers=["Código", "Nome", "Quantidade", "Preço Kg/UN (R$)", "Disponível"], tablefmt="grid")
 
-    # retorno do resultado
     return print(tabela)
 
 
