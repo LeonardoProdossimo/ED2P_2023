@@ -74,7 +74,7 @@ while op != "0":
         if(codigo == "sair"):
             continue
         prod = estoque[codigo]["nome"]
-        print(f"Deseja realmente excluir o produto {estoque[codigo][prod]} ?")
+        print(f"Deseja realmente excluir o produto {prod.upper()} permanentemente?")
         print("1 - Sim")
         print("2 - Não")
         op = input("OPÇÃO ---> ")
