@@ -22,7 +22,6 @@ def fucionariosOrdemAlfabetica():
     for nome in sorted(listaOrdem):
         print(f"Nome: {nome}, ")
 
-
 def funcionarioMaisVelho():
     print("====Funcionários com mais idade====")
     for chave in funcionarios:
@@ -39,7 +38,6 @@ def funcionarioMaisVelho():
             print(f"Salario: {salario}")
             print("="*50)
 
-
 def funcionarioMaisNovo():
     print("====Funcionários com menos idade====")
     for chave in funcionarios:
@@ -55,7 +53,6 @@ def funcionarioMaisNovo():
             print(f"Idade: {idade}")
             print(f"Salario: {salario}")
             print("="*50)
-
 
 def funcionarioMaisRico():
     print("====Maior Salário====")

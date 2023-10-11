@@ -1,4 +1,4 @@
-#biblioteca para exibir as inforções em forma de tabela
+#biblioteca para exibir as informações em forma de tabela
 from tabulate import tabulate
 
 

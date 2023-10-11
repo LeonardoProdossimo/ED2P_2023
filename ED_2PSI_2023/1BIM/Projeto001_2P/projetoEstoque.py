@@ -4,13 +4,15 @@ import assistente
 estoque = {}
 op = 1
 
-#tenta carregar o arquivo e armazenar no dicionário se falhar exibe o print tratando o erro para não parar o programa
+#tenta carregar o arquivo e armazenar no dicionário se falhar ou não existir exibe o print tratando o erro para não parar o programa
 try:
     with open("ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json", "r") as json_file:
         estoque = json.load(json_file)
 except:
     print("ARQUIVO NÃO EXISTE!")
 
+
+#programa no terminal
 while op != "0":
     print("====================== MENU ======================")
     print("1 - ADICIONAR PRODUTO")
@@ -155,6 +157,7 @@ while op != "0":
     else:
         print("="*50)
         print("OPÇÃO INVÁLIDA!")
+
 
 with open("ED_2PSI_2023\\Projeto001_2P\\base_dados\\estoque.json" , "w") as json_file:
             json.dump(estoque , json_file, indent = 4)
