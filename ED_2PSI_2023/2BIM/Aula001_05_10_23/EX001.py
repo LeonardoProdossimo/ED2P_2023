@@ -38,9 +38,9 @@ if __name__ == '__main__':
             print(v)
         elif op == 2:
             media = calcula_media(v)
-            print(f'a media é {media:.2f}')
+            print(f'A média é: {media:.2f}')
         elif op == 3:
             valor = int(input("Digite o valor que deseja verificar---> "))
             verificaValor(valor)
     else:
-        print('saindo...')
+        print('SAINDO...')
