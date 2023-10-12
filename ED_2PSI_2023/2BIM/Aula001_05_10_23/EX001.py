@@ -30,8 +30,8 @@ def verificaValor(valor):
 #main
 if __name__ == '__main__':
     v= []
-    opcao = 0
-    while opcao != 4:
+    op = 0
+    while op != 4:
         op = menu()
         if op == 1:
             v =inicializa_list(8)
