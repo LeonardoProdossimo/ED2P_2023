@@ -10,6 +10,9 @@ if __name__ == '__main__':
     while op != 6:
 
         op = a.menu()
+        if(op == "6"):
+            print("SAINDO... ")
+            break
         if(op != "5"):
             print("="*38)
             print(f"O estado atual da memória é {memoria}")
@@ -37,10 +40,6 @@ if __name__ == '__main__':
             operacao = a.limpaMemoria()
             print(f"O estado atual da memória é 0")
             continue
-
-        elif op == "6":
-            print("SAINDO... ")
-
         else:
             print("OPÇÃO INVÁLIDA! ")
             
