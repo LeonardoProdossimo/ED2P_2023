@@ -38,7 +38,7 @@ def retornaCombinacoes(numeroAlunos, primeiroGrupo):
     print()
     return print(f"O primeiro grupo ficará com {primeiroGrupo} "+
                     f"alunos e o segundo ficará com {segundoGrupo} alunos.\n"+
-                    f"O número de combinações possiveis para estes números é de {int(comb)}\n")
+                    f"O número de combinações de grupos possiveis para estes números é de {int(comb)}\n")
 
 def retornaNotas(listaNotas):
     num = retornaNumero(False, True, "")
