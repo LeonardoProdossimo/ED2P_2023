@@ -1,0 +1,7 @@
+
+Entrada: 
+ 10.0
+ 30.0
+
+Saida:
+ SOMA = 40.0
