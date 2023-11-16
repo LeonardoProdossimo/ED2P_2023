@@ -1,7 +1,7 @@
 
 Entrada: 
- 10.0
+ 50.0
  30.0
 
 Saida:
- SOMA = 40.0
+ SOMA = 80.0
