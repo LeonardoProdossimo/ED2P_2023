@@ -16,11 +16,15 @@ def leitura(nome_arquivo: str):
 
 def soma_valores_arquivo():
     valores = leitura("ED_2PSI_2023\\2BIM\\Aula004_14_10_23\\programa\\entrada.txt")
+    print("="*50)
+    print("SOMA")
     return sum(valores)
 
 # EXERCICIOS 16/11/2023 
 def maior_valor_arquivo():
     maior = leitura("ED_2PSI_2023\\2BIM\\Aula004_14_10_23\\programa\\entrada.txt")
+    print("="*50)
+    print("MAIOR DA LISTA")
     return max(maior)
     
 def multiplica_valores_arquivo():
@@ -28,18 +32,20 @@ def multiplica_valores_arquivo():
     mult = 1
     for valor in maior:
         mult *= valor
+    print("="*50)
+    print("MULTIPLICAÇÃO")
     return mult
 
 if __name__ == '__main__':
+
     resultado = soma_valores_arquivo()
-    maior = maior_valor_arquivo()
-    mult = multiplica_valores_arquivo()
-    print("="*50)
-    print("SOMA")
     print(resultado)
-    print("="*50)
-    print("MAIOR DA LISTA")
+
+    maior = maior_valor_arquivo()
     print(maior)
-    print("="*50)
-    print("MULTIPLICAÇÃO")
+    
+    mult = multiplica_valores_arquivo()
     print(mult)
+    
+    
+   
