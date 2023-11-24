@@ -1,20 +1,22 @@
-N = 5
-M = 5
+
+linhas = 5
+colunas = 5
 
 import random as r
 matriz = []
 
-for i in range(N):
+for i in range(linhas):
     lista = []
-    for j in range(M):
+    for j in range(colunas):
         num  = r.randint(1,100)
         lista.append(num)
     matriz.append(lista)
 
 print("------")
 qtd = 0
-for i in range(N):
-    for j in range(M):
+print("Matriz")
+for i in range(linhas):
+    for j in range(colunas):
         print(matriz[i][j],end='\t')
         if(matriz[i][j] % 2 == 0):
             qtd += 1
