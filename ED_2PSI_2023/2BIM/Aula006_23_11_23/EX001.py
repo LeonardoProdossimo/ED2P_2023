@@ -19,5 +19,5 @@ for i in range(len(matriz)):
     print()
 
 ind = listaMinoridade.index(min(listaMinoridade))
-print(f"A pessoa mais nova é {matriz[ind][0]} e sua idade é {min(listaMinoridade)}")
+print(f"A pessoa mais nova é {matriz[ind][0]} e sua idade é {min(listaMinoridade)} anos")
 

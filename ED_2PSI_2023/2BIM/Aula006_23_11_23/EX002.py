@@ -23,9 +23,9 @@ for i in range(3):
     numeros = []
     for j in range(3):
         numeros.append(r.randint(1,10))
-        matriz.append(numeros)
-        print(matriz[i][j], end=' \t')
-    print()
+    matriz.append(numeros)
+    print(matriz[i])
+    
     mult *= matriz[i][i]
 
 print(f"O resultado da multiplicação da diagonal principal é: {mult}")
