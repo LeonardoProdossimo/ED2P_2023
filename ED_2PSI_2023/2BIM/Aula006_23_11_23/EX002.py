@@ -16,16 +16,21 @@ ouput, suponha k = 5
 import random as r
 
 matriz = []
-mult = 1
+mult = r.randint(0,10)
+print(f"Número que irá multiplicar é: {mult}")
+print()
 
-print("Matriz")
+print("Matriz Antes")
 for i in range(3):
     numeros = []
     for j in range(3):
         numeros.append(r.randint(1,10))
     matriz.append(numeros)
     print(matriz[i])
+    matriz[i][i] *= mult
     
-    mult *= matriz[i][i]
+print()
+print("Matriz Depois")
+for k in range(3):
+    print(matriz[k])
 
-print(f"O resultado da multiplicação da diagonal principal é: {mult}")
