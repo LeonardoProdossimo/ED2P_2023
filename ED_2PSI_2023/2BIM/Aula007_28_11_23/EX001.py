@@ -7,14 +7,17 @@ c) Qual foi a volta com a média mais rápida
 """
 import random as r
 
+numVoltas = 10
+numCorredores = 6
+
 ContagemVoltas = ["Pilotos ", "Volta01", "Volta02", "Volta03", "Volta04", "Volta05", "Volta06", "Volta07", "Volta08", "Volta09", "Volta10"]
 matriz = []
 
 def insereVoltas():
     print("-"*95)
-    for i in range(6):
+    for i in range(numCorredores):
         voltas = []
-        for j in range(10):
+        for j in range(numVoltas):
             voltas.append(r.randint(100,200))
         matriz.append(voltas)
     imprimeVoltas()
@@ -67,7 +70,7 @@ def podio():
     for j in range(len(matriz)):
         index = medias.index(min(medias))
         print(f"{j+1}º lugar ---> Corredor{index+1} com a média de {medias[index]:.2f} segundos")
-        medias.pop(index)
+        medias[index] = 300
     print("-"*95)
 
 insereVoltas()
